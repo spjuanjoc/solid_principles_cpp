@@ -2,8 +2,8 @@
 // Created by juan.castellanos on 10/01/20.
 //
 
-#ifndef DESIGN_PATTERNS_CPP_REPORTING_H
-#define DESIGN_PATTERNS_CPP_REPORTING_H
+#ifndef REPORTING_H
+#define REPORTING_H
 
 #include "ILogger.h"
 
@@ -20,4 +20,4 @@ public:
 };
 
 
-#endif  //DESIGN_PATTERNS_CPP_REPORTING_H
+#endif  //REPORTING_H

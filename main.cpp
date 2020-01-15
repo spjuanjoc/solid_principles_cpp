@@ -14,7 +14,8 @@
 #include <DIP/Logger/ConsoleLogger.h>
 #include <iostream>
 
-/// Single Responsibility Principle
+/// \brief Single Responsibility Principle.
+/// \example Journal & save_file
 void SrpExample()
 {
   std::cout << "SRP: Single Responsibility Principle\n";
@@ -30,7 +31,8 @@ void SrpExample()
   std::cout << "End SRP\n";
 }
 
-/// Open-Closed Principle
+/// \brief Open-Closed Principle.
+/// \example DB Filter specific search
 void OcpExample()
 {
   std::cout << "OCP: Open-Closed Principle\n";
@@ -67,7 +69,8 @@ void OcpExample()
   std::cout << "End OCP\n";
 }
 
-/// Liskov Substitution Principle
+/// \brief Liskov Substitution Principle.
+/// \example square !: rectangle. Factory instead
 void LspExample()
 {
   std::cout << "LSP Liskov Substitution Principle\n";
@@ -104,7 +107,8 @@ void LspExample()
   std::cout << "End LSP \n";
 }
 
-/// Interface Segregation Principle
+/// \brief Interface Segregation Principle.
+/// \example Multifunction printer: interface for each
 void IspExample()
 {
   std::cout << "ISP Interface Segregation Principle\n";
@@ -141,8 +145,9 @@ void IspExample()
   std::cout << "End ISP\n";
 }
 
-/// Dependency Inversion Principle
-/// Dependency injection
+/// \brief Dependency Inversion Principle.
+/// \note Dependency injection
+/// \example Report logger: depend on interfaces
 void DipExample()
 {
   std::cout << "DIP Dependency Injection Principle\n";
@@ -171,6 +176,8 @@ int main()
   IspExample();
   std::cout << "\n";
   DipExample();
+
+  std::cout << "Bye, Design patterns\n";
 
   return 0;
 }

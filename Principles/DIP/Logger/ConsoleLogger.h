@@ -2,8 +2,8 @@
 // Created by juan.castellanos on 10/01/20.
 //
 
-#ifndef DESIGN_PATTERNS_CPP_CONSOLELOGGER_H
-#define DESIGN_PATTERNS_CPP_CONSOLELOGGER_H
+#ifndef CONSOLELOGGER_H
+#define CONSOLELOGGER_H
 
 #include "ILogger.h"
 #include <iostream>
@@ -16,4 +16,4 @@ struct ConsoleLogger : ILogger
   void Log(const std::string& s) override;
 };
 
-#endif  //DESIGN_PATTERNS_CPP_CONSOLELOGGER_H
+#endif  //CONSOLELOGGER_H
