@@ -159,6 +159,7 @@ void DipExample()
 
   Reporting r(*logger);
   r.prepare_report();
+  logger->Log("Log");
 
   std::cout << "End DIP\n";
 }
