@@ -10,8 +10,15 @@
 struct ILogger
 {
   virtual ~ILogger() = default;
-
   virtual void Log(const std::string& s) = 0;
+
+protected:
+  ILogger() = default;
+  ILogger(const ILogger&) = default;
+  ILogger(ILogger&&) = default;
+  ILogger& operator=(const ILogger&) = default;
+  ILogger& operator=(ILogger&&) = default;
+
 };
 
 #endif  //ILOGGER_H

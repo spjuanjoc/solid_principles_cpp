@@ -11,7 +11,12 @@
 
 struct ConsoleLogger : ILogger
 {
-  ConsoleLogger() = default;
+  ConsoleLogger() /*{ puts("ConsoleLogger ctor"); }*/= default;
+  ~ConsoleLogger() override /*{ puts("ConsoleLogger dtor"); }*/= default;
+  ConsoleLogger(const ConsoleLogger&) = default; //{ puts("ConsoleLogger copy ctor"); }
+  ConsoleLogger(ConsoleLogger&&) = default; //noexcept { puts("ConsoleLogger move ctor"); }
+  ConsoleLogger& operator=(const ConsoleLogger&) = default;
+  ConsoleLogger& operator=(ConsoleLogger&&) = default;
 
   void Log(const std::string& s) override;
 };
