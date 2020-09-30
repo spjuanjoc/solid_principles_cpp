@@ -2,7 +2,7 @@
 // Created by juan.castellanos on 10/01/20.
 //
 
-#include "Reporting.h"
+#include "DIP/Reporting//Reporting.h"
 
 void Reporting::prepare_report()
 {

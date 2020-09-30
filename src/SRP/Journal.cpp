@@ -2,8 +2,8 @@
 // Created by juan.castellanos on 10/01/20.
 //
 
-#include "Journal.h"
-#include "PersistenceManager.hpp"
+#include "SRP/Journal.h"
+#include "SRP/PersistenceManager.hpp"
 
 void Journal::add(const string& entry)
 {

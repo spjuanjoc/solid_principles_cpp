@@ -5,7 +5,7 @@
 #ifndef REPORTING_H
 #define REPORTING_H
 
-#include "ILogger.h"
+#include "DIP/Logger/ILogger.h"
 
 class Reporting
 {

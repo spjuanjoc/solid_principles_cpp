@@ -2,8 +2,8 @@
 // Created by juan.castellanos on 10/01/20.
 //
 
-#include "Printer.h"
-#include "Document.h"
+#include "ISP/Printer.h"
+#include "ISP/Document.h"
 #include <iostream>
 #include <vector>
 

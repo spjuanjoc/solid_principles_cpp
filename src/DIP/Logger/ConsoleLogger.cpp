@@ -2,7 +2,7 @@
 // Created by juan.castellanos on 10/01/20.
 //
 
-#include "ConsoleLogger.h"
+#include "DIP/Logger//ConsoleLogger.h"
 
 void ConsoleLogger::Log(const std::string& s)
 {

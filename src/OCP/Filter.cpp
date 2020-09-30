@@ -2,8 +2,8 @@
 // Created by juan.castellanos on 10/01/20.
 //
 
-#include "Filter.h"
-#include "Specification.h"
+#include "OCP/Filter.h"
+#include "OCP/Specification.h"
 
 std::vector<Product*> BetterFilter::filter(std::vector<Product*>   items,
                                            Specification<Product>& spec)

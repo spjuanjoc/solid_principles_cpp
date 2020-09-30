@@ -2,7 +2,7 @@
 // Created by juan.castellanos on 10/01/20.
 //
 
-#include "Machine.h"
+#include "ISP/Machine.h"
 
 void Machine::print(std::vector<Document*> docs)
 {

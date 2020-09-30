@@ -5,7 +5,7 @@
 #ifndef CAR_H
 #define CAR_H
 
-#include "ILogger.h"
+#include "DIP/Logger/ILogger.h"
 #include <memory>
 
 struct Engine;
