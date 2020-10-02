@@ -5,7 +5,7 @@ add_definitions(-DGTEST_LANGUAGE_CXX11)
 file(GLOB_RECURSE TEST_SOURCES LIST_DIRECTORIES false *.test.cpp)
 
 add_executable(${TEST_NAME} ${TEST_SOURCES})
-add_test(ChainTest ${TEST_NAME})
+add_test(${TEST_NAME} ${TEST_NAME})
 
 message("Tests included")
 
