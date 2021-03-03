@@ -19,5 +19,6 @@ if (ENABLE_CONAN)
 #  include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 #  conan_basic_setup(TARGETS)
 #  conan_target_link_libraries(${TEST_NAME} CONAN_PKG::gtest CONAN_PKG::gmock )
+# todo add conan
   target_link_libraries(${TEST_NAME} gtest gmock pthread)
 endif ()
