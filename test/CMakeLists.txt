@@ -1,24 +1,20 @@
 set(TEST_NAME ${PROJECT_NAME}_AllTests)
 
-add_definitions(-DGTEST_LANGUAGE_CXX11)
-
 file(GLOB_RECURSE TEST_SOURCES LIST_DIRECTORIES false *.test.cpp)
 
 add_executable(${TEST_NAME} ${TEST_SOURCES})
-add_test(${TEST_NAME} ${TEST_NAME})
+add_test(${TEST_NAME} ${TEST_NAME}) # for ctest
+add_definitions(-DGTEST_LANGUAGE_CXX11) # for gtest
 
-message("Tests included")
+## Compiler options
+include(../cmake/CompilerOptions.cmake)
+set_project_options(${TEST_NAME})
 
-# Get the headers
-set(INCLUDES include)
-include_directories(PUBLIC ${INCLUDES})
-target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDES})
+## Find third-party packages
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_BINARY_DIR})
+find_package(fmt REQUIRED)
+find_package(GTest REQUIRED)
 
-# Link googletest with the current project
-if (ENABLE_CONAN)
-#  include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-#  conan_basic_setup(TARGETS)
-#  conan_target_link_libraries(${TEST_NAME} CONAN_PKG::gtest CONAN_PKG::gmock )
-# todo add conan
-  target_link_libraries(${TEST_NAME} gtest gmock pthread)
-endif ()
+target_link_libraries(${TEST_NAME} PRIVATE fmt::fmt gtest gmock pthread)
+target_compile_features(${TEST_NAME} PUBLIC cxx_std_17)
+target_include_directories(${TEST_NAME} PRIVATE ../include)

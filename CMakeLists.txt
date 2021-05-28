@@ -2,44 +2,11 @@ cmake_minimum_required(VERSION 3.15)
 
 project(solid_principles_cpp VERSION 0.0.1 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
-
 # Options
-option(ENABLE_PCH         "Enable Precompiled Headers" FALSE)
-option(ENABLE_TESTS       "Enable tests" FALSE)
-option(ENABLE_CONAN       "Enable Conan" FALSE)
-option(ENABLE_WARN_AS_ERR "Treat compiler warnings as errors" FALSE)
-option(ENABLE_COVERAGE    "Enable gcov coverage" FALSE)
-
-# standard compiler warnings
-set(GCC_OPTIONS
-    -Wall
-    )
-
-if(ENABLE_WARN_AS_ERR)
-  set(GCC_OPTIONS ${GCC_OPTIONS} -Werror)
-endif()
-
-# Compiler
-if(MSVC)
-  set(PROJECT_OPTIONS ${MSVC_WARNINGS})
-elseif(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
-  set(PROJECT_OPTIONS ${CLANG_WARNINGS})
-elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-  if(ENABLE_COVERAGE)
-    message("Using gcov")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
-#    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage ")
-  endif()
-
-  set(GCC_OPTIONS ${GCC_OPTIONS}
-      -O0
-      -g
-  )
-  set(PROJECT_OPTIONS ${GCC_OPTIONS})
-else()
-  message(AUTHOR_WARNING "No compiler warnings set for '${CMAKE_CXX_COMPILER_ID}' compiler.")
-endif()
+option(ENABLE_PCH         "Enable Precompiled Headers" False)
+option(ENABLE_TESTS       "Enable tests" False)
+option(ENABLE_COVERAGE    "Enable gcov coverage" False)
+option(ENABLE_WARN_AS_ERR "Treat compiler warnings as errors" False)
 
 set(SOURCES
     src/SRP/Journal.cpp
@@ -62,43 +29,50 @@ set(SOURCES
 #add_library(${PROJECT_NAME} STATIC ${SOURCES})
 add_executable(${PROJECT_NAME} ${SOURCES})
 
-# ---
-# target instructions must be set after add_executable or add_library instructions
+## Compiler options
+include(cmake/CompilerOptions.cmake)
+set_project_options(${PROJECT_NAME})
 
-target_compile_options(${PROJECT_NAME} INTERFACE ${PROJECT_OPTIONS})
+## Setup Conan
+# Download automatically, you can also just copy the conan.cmake file
+if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
+  message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
+  file(DOWNLOAD "https://raw.githubusercontent.com/conan-io/cmake-conan/master/conan.cmake"
+      "${CMAKE_BINARY_DIR}/conan.cmake")
+endif()
 
-# target_compile_features(starter_cpp PRIVATE cxx_lambda_init_captures)
+include(${CMAKE_BINARY_DIR}/conan.cmake)
+conan_cmake_run(CONANFILE conanfile.txt BASIC_SETUP #[[BUILD missing]])
 
-# Get the headers
-set(INCLUDES include)
-include_directories(PUBLIC ${INCLUDES})
-target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDES})
+## Find third-party packages
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_BINARY_DIR})
+find_package(fmt REQUIRED)
 
-# Custom Options
-if(ENABLE_PCH)
-  # Since CMake 3.15
-  set(PC_HEADERS <vector> <string> <map> <utility> <algorithm> <cctype> <ostream> <memory> <sstream>)
-  if (ENABLE_CONAN)
-    set(PC_HEADERS ${PC_HEADERS} <gtest/gtest.h>)
-  endif()
+## conan_cmake_run https://github.com/selassje/eyeTracker/blob/master/CMakeLists.txt
+target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt)
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
+target_include_directories(${PROJECT_NAME} PRIVATE include)
+#target_sources(${PROJECT_NAME} ${SOURCES})
 
+## Check custom options
+if(ENABLE_PCH) # Since CMake 3.15
+  set(PC_HEADERS <vector> <string> <map> <utility> <algorithm> <cctype> <ostream> <memory> <sstream> <gtest/gtest.h>)
   target_precompile_headers(${PROJECT_NAME} INTERFACE ${PC_HEADERS})
   message("Pre compiled headers enabled")
 endif()
 
-if(ENABLE_TESTS)
-  enable_testing()
+if (ENABLE_TESTS)
+  message(STATUS "Tests enabled")
+  enable_testing() # Must be placed before add_subdirectory
   add_subdirectory(test)
-elseif()
-  message("Tests not included")
-endif()
-
-if (ENABLE_CONAN)
-  #    include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-  #    conan_basic_setup(TARGETS)
-  #    conan_target_link_libraries(${PROJECT_NAME}
-  #        CONAN_PKG::boost_signals2
-  #        )
-  #  message("Libs ${CONAN_LIBS}" )
-  #  message("Dir ${CMAKE_BINARY_DIR}")
 endif ()
+
+
+## Install commands
+install(TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION "/opt/${PROJECT_NAME}"
+    )
+
+set(CPACK_GENERATOR "DEB")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Juan Jose Castellanos <juancho.312@hotmail.com>")
+include(CPack)
