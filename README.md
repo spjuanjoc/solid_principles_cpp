@@ -1,7 +1,6 @@
 # solid_principles_cpp
 SOLID principles in C++ from Dmitri Nesteruk
 
-
 1. SRP: Single Responsibility: Journal & Save File
 2. OCP: Open-Closed: DB Filter specific search
 3. LSP: Liskov Substitution: class square !: rectangle. Factory instead

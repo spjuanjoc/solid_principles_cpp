@@ -1,7 +1,7 @@
-#include "DIP/Relationships.h"
 #include "DIP/Car/Car.h"
 #include "DIP/Car/Engine.h"
 #include "DIP/Logger/ConsoleLogger.h"
+#include "DIP/Relationships.h"
 #include "DIP/Reporting/Reporting.h"
 #include "ISP/Fax.h"
 #include "ISP/Machine.h"
@@ -21,7 +21,7 @@ void SrpExample()
 {
   std::cout << "SRP: Single Responsibility Principle\n";
 
-  Journal journal{ "My Diary" };
+  Journal journal{"My Diary"};
   journal.add("Dear Diary");
   journal.add("I cried today");
   journal.add("I ate a bug");
@@ -38,11 +38,11 @@ void OcpExample()
 {
   std::cout << "OCP: Open-Closed Principle\n";
 
-  Product apple{ "Apple", Color::Green, Size::Small };
-  Product tree{ "Tree", Color::Green, Size::Large };
-  Product house{ "House", Color::Blue, Size::Large };
+  Product apple{"Apple", Color::Green, Size::Small};
+  Product tree{"Tree", Color::Green, Size::Large};
+  Product house{"House", Color::Blue, Size::Large};
 
-  vector<Product*> all{ &apple, &tree, &house };
+  vector<Product*> all{&apple, &tree, &house};
 
   BetterFilter bf;
 
@@ -58,7 +58,7 @@ void OcpExample()
 
   //  ColorSpecification        green(Color::Green);
   SizeSpecification         large(Size::Large);
-  AndSpecification<Product> green_and_large{ large, green };
+  AndSpecification<Product> green_and_large{large, green};
 
   auto big_green_things = bf.filter(all, green_and_large);
   for (auto& x : big_green_things)
@@ -171,7 +171,7 @@ void DipExample2()
 {
   std::cout << "DIP Dependency Inversion Principle\n";
 
-  Person parent{ "John" };
+  Person parent{"John"};
   Person child1{"Chris"}, child2{"Matt"};
 
   Relationships relationships;
