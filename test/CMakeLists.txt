@@ -8,7 +8,7 @@ add_definitions(-DGTEST_LANGUAGE_CXX11) # for gtest
 
 ## Compiler options
 include(../cmake/CompilerOptions.cmake)
-set_project_options(${TEST_NAME})
+set_compiler_options(${TEST_NAME})
 
 ## Find third-party packages
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_BINARY_DIR})

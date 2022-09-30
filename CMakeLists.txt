@@ -29,7 +29,7 @@ add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 ## Compiler options
 include(cmake/CompilerOptions.cmake)
-set_project_options(${PROJECT_NAME})
+set_compiler_options(${PROJECT_NAME})
 
 ## Setup Conan
 if (NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
