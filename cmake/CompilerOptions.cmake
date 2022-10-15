@@ -58,9 +58,9 @@ function(set_compiler_options TARGET_NAME)
     -Wnull-dereference
     -Wold-style-cast
     -Woverloaded-virtual
-    -Wunused
     -Wshadow
     -Wsign-conversion
+    -Wunused
     -Wvarargs
   )
 
@@ -68,6 +68,7 @@ function(set_compiler_options TARGET_NAME)
     ${COMMON_OPTIONS}
     -Weverything
     -Wdangling-initializer-list
+#    -Wdocumentation
     -Wdynamic-class-memaccess
     -Winvalid-noreturn
     -Wunsequenced
@@ -76,12 +77,13 @@ function(set_compiler_options TARGET_NAME)
 
     -Wno-class-varargs
     -Wno-c99-extensions
+    -Wno-c++98-compat   # in everything
+    -Wno-documentation  # in everything
     -Wno-undefined-var-template
   )
 
   set(GCC_OPTIONS
     ${COMMON_OPTIONS}
-    -pedantic-errors
     -Wcast-qual
     -Wctor-dtor-privacy
     -Wdeprecated
@@ -107,7 +109,7 @@ function(set_compiler_options TARGET_NAME)
   if (ENABLE_WERROR)
     set(MSVC_OPTIONS  ${MSVC_OPTIONS}   /WX)
     set(CLANG_OPTIONS ${CLANG_OPTIONS}  -Werror)
-    set(GCC_OPTIONS   ${GCC_OPTIONS}    -Werror)
+    set(GCC_OPTIONS   ${GCC_OPTIONS}    -Werror -pedantic-errors)
   endif ()
 
 
@@ -127,6 +129,7 @@ function(set_compiler_options TARGET_NAME)
   endif()
 
   target_compile_options(${TARGET_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:${COMPILER_OPTIONS}>) # for header-only use INTERFACE
+  target_compile_features(${TARGET_NAME} PUBLIC cxx_std_20)
 
   message (STATUS "Target name:     ${TARGET_NAME}")
   message (STATUS "Target options:  ${COMPILER_OPTIONS}")
