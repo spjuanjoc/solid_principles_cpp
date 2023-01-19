@@ -1,17 +1,20 @@
-//
-// Created by juan.castellanos on 2/09/20.
-//
+/**
+ * @file main.test.cpp
+ *
+ * @brief The entry point for the unit tests.
+ *
+ * @author spjuanjoc
+ * @date   2020-09-02
+ */
 
-#include "gtest/gtest.h"
+#include <gmock/gmock.h>
+#include <gtest/gtest.h>
 
-// todo add tests
-TEST(Test1, test1)
-{
-
-}
-
-int main(int argc, char* argv[])
+int
+main(int argc, char* argv[])
 {
   testing::InitGoogleTest(&argc, argv);
+  testing::InitGoogleMock(&argc, argv);
+
   return RUN_ALL_TESTS();
 }

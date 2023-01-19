@@ -1,8 +1,10 @@
 set(TEST_NAME ${PROJECT_NAME}_AllTests)
 
-file(GLOB_RECURSE TEST_SOURCES LIST_DIRECTORIES false *.test.cpp)
+file(GLOB_RECURSE TEST_SOURCE_FILES LIST_DIRECTORIES false *.test.cpp)
+file(GLOB_RECURSE SOURCE_FILES LIST_DIRECTORIES false ../src/*.cpp)
+list(FILTER SOURCE_FILES EXCLUDE REGEX "../src/main.cpp")
 
-add_executable(${TEST_NAME} ${TEST_SOURCES})
+add_executable(${TEST_NAME} ${TEST_SOURCE_FILES} ${SOURCE_FILES})
 add_test(${TEST_NAME} ${TEST_NAME}) # for ctest
 add_definitions(-DGTEST_LANGUAGE_CXX11) # for gtest
 
@@ -16,5 +18,5 @@ find_package(fmt REQUIRED)
 find_package(GTest REQUIRED)
 
 target_link_libraries(${TEST_NAME} PRIVATE fmt::fmt GTest::gtest GTest::gmock pthread)
-target_compile_features(${TEST_NAME} PUBLIC cxx_std_17)
+#target_compile_features(${TEST_NAME} PUBLIC cxx_std_17)
 target_include_directories(${TEST_NAME} PRIVATE ../include)

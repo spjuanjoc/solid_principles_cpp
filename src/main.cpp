@@ -1,8 +1,5 @@
-#include "DIP/Car/Car.h"
-#include "DIP/Car/Engine.h"
-#include "DIP/Logger/ConsoleLogger.h"
-#include "DIP/Relationships.h"
-#include "DIP/Reporting/Reporting.h"
+#include "DependencyInversion/CarReport/CarMaker.h"
+#include "DependencyInversion/CarReport/Engine.h"
 #include "ISP/Fax.h"
 #include "ISP/Machine.h"
 #include "ISP/Printer.h"
@@ -13,6 +10,7 @@
 #include "OCP/Specification.h"
 #include "SRP/Journal.h"
 #include "SRP/PersistenceManager.hpp"
+
 #include <iostream>
 
 /// \brief Single Responsibility Principle.
@@ -146,42 +144,7 @@ void IspExample()
   std::cout << "End ISP\n";
 }
 
-/// \brief Dependency Inversion Principle.
-/// \note Dependency injection
-/// \example Report logger: depend on interfaces
-void DipExample()
-{
-  std::cout << "DIP Dependency Inversion Principle\n";
 
-  std::shared_ptr<ConsoleLogger> logger = std::make_shared<ConsoleLogger>();
-  std::unique_ptr<Engine>        engine = std::make_unique<Engine>();
-
-  std::shared_ptr<Car> car = std::make_shared<Car>(std::move(engine), logger);
-
-  Reporting r(*logger);
-  r.prepare_report();
-  logger->Log("Log");
-
-  std::cout << "End DIP\n";
-}
-
-/// \brief Dependency Inversion Principle.
-/// \example Relationships: Depend on abstractions
-void DipExample2()
-{
-  std::cout << "DIP Dependency Inversion Principle\n";
-
-  Person parent{"John"};
-  Person child1{"Chris"}, child2{"Matt"};
-
-  Relationships relationships;
-  relationships.add_parent_and_child(parent, child1);
-  relationships.add_parent_and_child(parent, child2);
-
-  Research r(relationships);
-
-  std::cout << "End DIP\n";
-}
 
 int main()
 {
@@ -194,11 +157,6 @@ int main()
   LspExample();
   std::cout << "\n";
   IspExample();
-  std::cout << "\n";
-  DipExample();
-  std::cout << "\n";
-  DipExample2();
-  std::cout << "\n";
 
   std::cout << "Bye, Design patterns\n";
 

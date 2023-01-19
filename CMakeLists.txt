@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.15)
 
 project(solid_principles_cpp
-  VERSION "0.0.1"
-  DESCRIPTION "SOLID principles"
+  VERSION "0.1.2"
+  DESCRIPTION "SOLID principles in C++"
   LANGUAGES CXX
 )
 
