@@ -7,12 +7,19 @@
 
 #include <vector>
 
+namespace InterfaceSegregation
+{
+
 class Document;
 
-struct IScanner
+class IScanner
 {
+public:
+  virtual ~IScanner() = default;
+
   virtual void scan(std::vector<Document*> docs) = 0;
 };
 
+}  // namespace InterfaceSegregation
 
 #endif  //ISCANNER_H

@@ -1,9 +1,5 @@
 #include "DependencyInversion/CarReport/CarMaker.h"
 #include "DependencyInversion/CarReport/Engine.h"
-#include "ISP/Fax.h"
-#include "ISP/Machine.h"
-#include "ISP/Printer.h"
-#include "ISP/Scanner.h"
 #include "LSP/Rectangle.h"
 #include "OCP/Filter.h"
 #include "OCP/Product.h"
@@ -106,43 +102,6 @@ void LspExample()
   std::cout << "End LSP \n";
 }
 
-/// \brief Interface Segregation Principle.
-/// \example Multifunction printer: interface for each
-void IspExample()
-{
-  std::cout << "ISP Interface Segregation Principle\n";
-
-  Printer*               p = new Printer();
-  Printer                p2;
-  std::vector<Document*> docs{};
-  p->print(docs);
-  p2.print(docs);
-
-  Scanner* s = new Scanner();
-  Scanner  s2;
-  s->scan(docs);
-  s2.scan(docs);
-
-  Fax* f = new Fax();
-  Fax  f2;
-  f->fax(docs);
-  f2.fax(docs);
-
-  Machine m(*p, *s, *f);
-  m.print(docs);
-  m.scan(docs);
-  m.fax(docs);
-
-  Machine m2(p2, s2, f2);
-  m2.print(docs);
-  m2.scan(docs);
-  m2.fax(docs);
-
-  Machine* m3 = new Machine(*p, *s, *f);
-  m3->print(docs);
-
-  std::cout << "End ISP\n";
-}
 
 
 
@@ -155,10 +114,6 @@ int main()
   OcpExample();
   std::cout << "\n";
   LspExample();
-  std::cout << "\n";
-  IspExample();
-
-  std::cout << "Bye, Design patterns\n";
 
   return 0;
 }

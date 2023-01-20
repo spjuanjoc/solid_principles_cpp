@@ -5,9 +5,16 @@
 #ifndef DOCUMENT_H
 #define DOCUMENT_H
 
+namespace InterfaceSegregation
+{
+
 class Document
 {
-  // void DoSomething();
+public:
+  Document() = default;
+
+  void doSomething() {};
 };
 
+}
 #endif  //DOCUMENT_H
