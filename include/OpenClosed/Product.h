@@ -1,13 +1,22 @@
-//
-// Created by juan.castellanos on 10/01/20.
-//
+/**
+ * @file .h
+ *
+ * @brief Declaration of the  class.
+ *
+ * @author  spjuanjoc
+ * @date    2020-01-10
+ */
 
 #ifndef PRODUCT_H
 #define PRODUCT_H
 
 #include <string>
 
-template<typename T>
+namespace OpenClosed
+{
+
+
+template <typename T>
 struct Specification;
 
 enum class Color
@@ -29,5 +38,7 @@ struct Product
   Color       color;
   Size        size;
 };
+
+}  // namespace OpenClosed
 
 #endif  //PRODUCT_H
