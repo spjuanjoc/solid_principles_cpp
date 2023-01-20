@@ -16,6 +16,7 @@
 #include <gtest/gtest.h>
 
 using namespace testing;
+using namespace InterfaceSegregation;
 
 /**
  * @brief Interface Segregation Principle.
@@ -25,43 +26,39 @@ using namespace testing;
 TEST(MultifunctionPrinterMachineTests, ispdrawObjects_rectangles_objectsPoints)
 {
   // Arrange
-
-  /// \brief Interface Segregation Principle.
-  /// \example Multifunction printer: interface for each
-  using namespace InterfaceSegregation;
   std::cout << "InterfaceSegregation Interface Segregation Principle\n";
 
-  Printer*               p = new Printer();
-  Printer                p2;
-  std::vector<Document*> docs{};
-  p->print(docs);
-  p2.print(docs);
+  std::vector<Document*> documents{};
+  Printer*               printer1 = new Printer();
+  Printer                printer2;
+  Scanner*               scanner1 = new Scanner();
+  Scanner                scanner2;
+  Fax*                   fax1 = new Fax();
+  Fax                    fax2;
+  Machine                machine1(*printer1, *scanner1, *fax1);
+  Machine                machine2(printer2, scanner2, fax2);
+  Machine*               machine3 = new Machine(*printer1, *scanner1, *fax1);
 
-  Scanner* s = new Scanner();
-  Scanner  s2;
-  s->scan(docs);
-  s2.scan(docs);
 
-  Fax* f = new Fax();
-  Fax  f2;
-  f->send(docs);
-  f2.send(docs);
-
-  Machine m(*p, *s, *f);
-  m.print(docs);
-  m.scan(docs);
-  m.send(docs);
-
-  Machine m2(p2, s2, f2);
-  m2.print(docs);
-  m2.scan(docs);
-  m2.send(docs);
-
-  Machine* m3 = new Machine(*p, *s, *f);
-  m3->print(docs);
-
-  std::cout << "End InterfaceSegregation\n";
   // Act
+  printer1->print(documents);
+  printer2.print(documents);
+
+  scanner1->scan(documents);
+  scanner2.scan(documents);
+
+  fax1->send(documents);
+  fax2.send(documents);
+
+  machine1.print(documents);
+  machine1.scan(documents);
+  machine1.send(documents);
+
+  machine2.print(documents);
+  machine2.scan(documents);
+  machine2.send(documents);
+
+  machine3->print(documents);
 
   //  // Arrange
   //  EXPECT_THAT(actual_pets, ContainerEq(expected_pets)) << "all pets must match";
