@@ -1,26 +1,28 @@
-# solid_principles_cpp
+# Solid Principles in Cpp
 
 SOLID principles in C++
 
-## SRP: Single Responsibility
+## SRP: Single Responsibility Principle
 
 Journal & Save File
 
-## OCP: Open-Closed
+## OCP: Open-Closed Principle
 
 DB Filter specific search
 
-## LSP: Liskov Substitution
+## LSP: Liskov Substitution Principle
 
-class square !: rectangle. Factory instead
+A square is not a rectangle. 
+Use a Factory to create each.
 
-## ISP: Interface Segregation
+## ISP: Interface Segregation Principle
 
-Multifunction printer: Interface for each
+Multifunction printer: Create an interface for each component
 
-## DIP: Dependency Inversion
+## DIP: Dependency Inversion Principle
 
+- High-level modules should not depend on low-level modules. Both should depend on abstractions.
+- Abstractions should not depend on details. Details should depend on abstractions.
+
+Example:  
 Report logger: Depend on interfaces.
-  - High-level modules should not depend on low-level modules. Both should depend on abstractions.
-  - Abstractions should not depend on details. Details should depend on abstractions.
-
