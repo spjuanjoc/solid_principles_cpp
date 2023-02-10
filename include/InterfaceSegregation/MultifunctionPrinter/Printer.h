@@ -23,7 +23,7 @@ class Printer : public virtual IPrinter
 {
 public:
 
-  void print(std::vector<Document*> documents) override { std::cout << "Print\n"; };
+  void print([[maybe_unused]] std::vector<Document*> documents) override { std::cout << "Print\n"; };
 };
 
 }  // namespace InterfaceSegregation

@@ -27,9 +27,9 @@ public:
   {
     std::cout << "Sending documents\n";
 
-    for (const auto& document : documents)
+    for ([[maybe_unused]] const auto& document : documents)
     {
-//      document.
+      //      document.
     }
   };
 };
