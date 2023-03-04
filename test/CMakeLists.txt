@@ -14,9 +14,10 @@ set_compiler_options(${TEST_NAME})
 
 ## Find third-party packages
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_BINARY_DIR})
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${CMAKE_BINARY_DIR})
+
 find_package(fmt REQUIRED)
 find_package(GTest REQUIRED)
 
-target_link_libraries(${TEST_NAME} PRIVATE fmt::fmt GTest::gtest GTest::gmock pthread)
-#target_compile_features(${TEST_NAME} PUBLIC cxx_std_17)
+target_link_libraries(${TEST_NAME} PRIVATE ${fmt_LIBRARIES} ${GTest_LIBRARIES} pthread)
 target_include_directories(${TEST_NAME} PRIVATE ../include)
