@@ -9,13 +9,24 @@
 
 #include "DependencyInversion/CarReport/Logger/ConsoleLogger.h"
 
+//#include <iostream>
+
 namespace DependencyInversion
 {
 
+std::uint32_t ConsoleLogger::s_number_of_entries = 0;
+
 void
-ConsoleLogger::writeEntry(const std::string& message)
+ConsoleLogger::writeEntry([[maybe_unused]] const std::string& message)
 {
-  std::cout << "LOG: " << message.c_str() << '\n';
+  //  std::cout << "LOG: " << message.c_str() << '\n';
+  ++s_number_of_entries;
+}
+
+std::uint32_t
+ConsoleLogger::getNumberOfEntries()
+{
+  return s_number_of_entries;
 }
 
 }  // namespace DependencyInversion

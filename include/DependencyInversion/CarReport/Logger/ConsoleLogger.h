@@ -12,7 +12,6 @@
 
 #include "ILogger.h"
 
-#include <iostream>
 #include <string>
 
 namespace DependencyInversion
@@ -29,6 +28,10 @@ public:
   ConsoleLogger& operator=(ConsoleLogger&&)      = default;
 
   void writeEntry(const std::string& message) override;
+  static std::uint32_t getNumberOfEntries();
+
+private:
+  static std::uint32_t s_number_of_entries;
 };
 
 }  // namespace DependencyInversion
