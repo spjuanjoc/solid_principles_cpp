@@ -4,11 +4,15 @@ SOLID principles in C++
 
 ## SRP: Single Responsibility Principle
 
-Journal & Save File
+Create a journal, and save it to a file.
+A class should have only one reason for being modified.
+
 
 ## OCP: Open-Closed Principle
 
-DB Filter specific search
+Open to extension, closed to modification.  
+Database filter specific search.  
+
 
 ## LSP: Liskov Substitution Principle
 
@@ -17,7 +21,7 @@ Use a Factory to create each.
 
 ## ISP: Interface Segregation Principle
 
-Multifunction printer: Create an interface for each component
+Multifunction printer: Create an interface for each component.
 
 ## DIP: Dependency Inversion Principle
 
@@ -33,12 +37,23 @@ Report logger: Depend on interfaces.
 
 Requires:
 - CMake
-- Conan 2.0
+- Conan version lower than 2.0
 - A c++20 compliant compiler
 
-Since [cmake-conan](https://github.com/conan-io/cmake-conan) is not yet
-compatible with conan 2.0, before loading the cmake project (to
+When using conan 2.0: [cmake-conan](https://github.com/conan-io/cmake-conan) is
+not yet compatible with conan 2.0, before loading the cmake project (to
 e.g. `./build`) run:
 
-    conan profile show
-    conan install . --output-folder=build --build=missing
+```bash
+conan profile show
+conan install . --output-folder=build --build=missing
+```
+
+For conan < 2.0:
+
+```bash
+mkdir build
+cd build
+cmake .. -DCMAKE_MODULE_PATH=$PWD -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTS=True -G Ninja
+cmake --build .
+```

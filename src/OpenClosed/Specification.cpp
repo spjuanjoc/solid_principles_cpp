@@ -1,7 +1,7 @@
 /**
- * @file .h
+ * @file Specification.cpp
  *
- * @brief Declaration of the  class.
+ * @brief Definition of the specification classes.
  *
  * @author  spjuanjoc
  * @date    2020-01-10
@@ -13,7 +13,6 @@
 
 namespace OpenClosed
 {
-
 
 bool
 ColorSpecification::isSatisfied(Product* item)

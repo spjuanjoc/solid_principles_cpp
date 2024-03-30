@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 
 project(solid_principles_cpp
-  VERSION "0.2.1"
+  VERSION "0.2.2"
   DESCRIPTION "SOLID principles in C++"
   LANGUAGES CXX
 )
@@ -15,40 +15,34 @@ option(ENABLE_WARN_AS_ERR "Treat compiler warnings as errors" False)
 
 
 # GLOB source files
-file(GLOB_RECURSE
-  SOURCE_FILES
-  src/*.cpp
-  src/main.cpp
-)
+file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
+# Exclude main.cpp since it's a library
+#list(FILTER SOURCE_FILES EXCLUDE REGEX "src/main.cpp")
 
-
-# todo change to be a lib
-add_executable(${PROJECT_NAME} ${SOURCE_FILES})
-#add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
+add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
 
 
 ## Compiler options
 include(cmake/CompilerOptions.cmake)
 set_compiler_options(${PROJECT_NAME})
 
-## Setup Conan
-#if (NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
-#  message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
-#  file(DOWNLOAD
-#    "https://raw.githubusercontent.com/conan-io/cmake-conan/master/conan.cmake"
-#    "${CMAKE_BINARY_DIR}/conan.cmake"
-#  )
-#endif ()
-#
-#include(${CMAKE_BINARY_DIR}/conan.cmake)
-#conan_cmake_autodetect(settings)
-#conan_check(REQUIRED)
-#conan_cmake_run(CONANFILE conanfile.txt
-#  BASIC_SETUP NO_OUTPUT_DIRS
-#  BUILD missing
-#  SETTINGS ${settings}
-#)
+## Setup Conan < 2.0
+if (NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
+  message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
+  file(DOWNLOAD
+    "https://raw.githubusercontent.com/conan-io/cmake-conan/master/conan.cmake"
+    "${CMAKE_BINARY_DIR}/conan.cmake"
+  )
+endif ()
 
+include(${CMAKE_BINARY_DIR}/conan.cmake)
+conan_cmake_autodetect(settings)
+conan_check(REQUIRED)
+conan_cmake_run(CONANFILE conanfile.txt
+  BASIC_SETUP NO_OUTPUT_DIRS
+  BUILD missing
+  SETTINGS ${settings}
+)
 
 ## Find third-party packages
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_BINARY_DIR})

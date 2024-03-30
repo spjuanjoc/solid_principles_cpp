@@ -1,17 +1,21 @@
-//
-// Created by juan.castellanos on 10/01/20.
-//
+/**
+ * @file Journal.h
+ *
+ * @brief Declaration of the journal creation for the Single Responsibility Principle.
+ *
+ * @author spjuanjoc
+ * @date   2020-01-10
+ */
 
 #ifndef JOURNAL_H
 #define JOURNAL_H
 
-#include <iostream>
+#include <string>
 #include <utility>
 #include <vector>
 
 namespace SingleResponsibility
 {
-
 
 class Journal
 {

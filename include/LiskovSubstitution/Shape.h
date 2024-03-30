@@ -1,14 +1,16 @@
 /**
- * @file .h
+ * @file Shape.h
  *
- * @brief Declaration of the  class.
+ * @brief Declaration of the Shape class for the Liskov Substitution Principle.
  *
  * @author  spjuanjoc
  * @date    2020-01-10
  */
 
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#ifndef SHAPE_H
+#define SHAPE_H
+
+#include <cstdint>
 
 namespace LiskovSubstitution
 {
@@ -17,7 +19,7 @@ namespace LiskovSubstitution
 class Shape
 {
 public:
-  Shape(const int width, const int height)
+  Shape(const std::uint32_t width, const std::uint32_t height)
   : m_width{ width }
   , m_height{ height }
   {
@@ -25,30 +27,30 @@ public:
 
   virtual ~Shape() = default;
 
-  virtual void setWidth(const int& width);
+  virtual void setWidth(const std::uint32_t& width);
 
-  virtual void setHeight(const int& height);
+  virtual void setHeight(const std::uint32_t& height);
 
-  int get_width() const;
+  std::uint32_t getWidth() const;
 
-  int getHeight() const;
+  std::uint32_t getHeight() const;
 
-  int area() const;
+  std::uint32_t area() const;
 
   bool isSquare() const;
 
 protected:
-  int m_width;
-  int m_height;
+  std::uint32_t m_width;
+  std::uint32_t m_height;
 };
 
 class RectangleFactory
 {
 public:
-  static Shape createRectangle(int width, int height);
-  static Shape createSquare(int size);
+  static Shape createRectangle(std::uint32_t width, std::uint32_t height);
+  static Shape createSquare(std::uint32_t size);
 };
 
 }  // namespace LiskovSubstitution
 
-#endif  //RECTANGLE_H
+#endif  //SHAPE_H

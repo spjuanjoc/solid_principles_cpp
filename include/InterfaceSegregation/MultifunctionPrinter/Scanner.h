@@ -1,7 +1,7 @@
 /**
- * @file .h
+ * @file Scanner.h
  *
- * @brief Declaration of the  class.
+ * @brief Declaration of the scanner class.
  *
  * @author  spjuanjoc
  * @date    2020-01-10
@@ -21,7 +21,7 @@ namespace InterfaceSegregation
 class Scanner : public virtual IScanner
 {
 public:
-  void scan([[maybe_unused]] std::vector<Document*> documents) override { std::cout << "Scan\n"; };
+  void scan([[maybe_unused]] std::vector<Document*> documents) override { has_scanned = true; };
 };
 
 }  // namespace InterfaceSegregation
