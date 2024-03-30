@@ -1,7 +1,7 @@
 /**
- * @file .h
+ * @file Fax.h
  *
- * @brief Declaration of the  class.
+ * @brief Declaration of the Fax class.
  *
  * @author  spjuanjoc
  * @date    2020-01-10
@@ -18,6 +18,7 @@
 namespace InterfaceSegregation
 {
 
+// Forward declarations
 class Document;
 
 class Fax : public virtual IFax
@@ -25,12 +26,12 @@ class Fax : public virtual IFax
 public:
   void send(std::vector<Document*> documents) override
   {
-    std::cout << "Sending documents\n";
-
     for ([[maybe_unused]] const auto& document : documents)
     {
-      //      document.
+      //  document.
     }
+
+    was_sent = true;
   };
 };
 

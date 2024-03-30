@@ -1,7 +1,7 @@
 /**
- * @file .h
+ * @file Machine.h
  *
- * @brief Declaration of the  class.
+ * @brief Declaration of the Machine class.
  *
  * @author  spjuanjoc
  * @date    2020-01-10
@@ -30,6 +30,9 @@ public:
   void print(std::vector<Document*> documents) override;
   void scan(std::vector<Document*> documents) override;
   void send(std::vector<Document*> documents) override;
+  bool hasPrinted() override;
+  bool hasScanned() override;
+  bool wasSent() override;
 
 private:
   IPrinter& m_printer;
