@@ -1,7 +1,7 @@
 /**
- * @file .h
+ * @file Product.h
  *
- * @brief Declaration of the  class.
+ * @brief Declaration of the Product class.
  *
  * @author  spjuanjoc
  * @date    2020-01-10
@@ -15,8 +15,8 @@
 namespace OpenClosed
 {
 
-
-template <typename T>
+// Forward declarations
+template <typename Type>
 struct Specification;
 
 enum class Color
@@ -25,6 +25,7 @@ enum class Color
   Green,
   Blue
 };
+
 enum class Size
 {
   Small,

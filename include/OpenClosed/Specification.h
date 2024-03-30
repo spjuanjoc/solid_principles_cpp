@@ -1,7 +1,7 @@
 /**
- * @file .h
+ * @file Specification.h
  *
- * @brief Declaration of the  class.
+ * @brief Declaration of the Specification classes for the Open-Closed Principle.
  *
  * @author  spjuanjoc
  * @date    2020-01-10
@@ -13,21 +13,28 @@
 namespace OpenClosed
 {
 
+// Forward declarations
 enum class Color;
 enum class Size;
 struct Product;
 
-/// Specification interface
-template <typename T>
+/**
+ * @brief Filter specification interface.
+ *
+ * @tparam Type The type of the filter.
+ */
+template <typename Type>
 class Specification
 {
 public:
   virtual ~Specification() = default;
 
-  virtual bool isSatisfied(T* item) = 0;
+  virtual bool isSatisfied(Type* item) = 0;
 };
 
-/// Specification implementation for Color
+/**
+ * @brief Filter specification implementation for the color of a product.
+ */
 class ColorSpecification : public virtual Specification<Product>
 {
 public:
@@ -42,7 +49,9 @@ private:
   Color m_color;
 };
 
-/// Specification implementation for Size
+/**
+ * @brief Filter specification implementation for the size of a product.
+ */
 class SizeSpecification : public virtual Specification<Product>
 {
 public:
@@ -57,22 +66,26 @@ private:
   Size m_size;
 };
 
-/// Composite Specification implementation for AND
-template <typename T>
-class AndSpecification : public virtual Specification<T>
+/**
+ * @brief Composite filter Specification implementation for the AND operation.
+ *
+ * @tparam Type The type of the specification.
+ */
+template <typename Type>
+class AndSpecification : public virtual Specification<Type>
 {
 public:
-  AndSpecification(Specification<T>& first, Specification<T>& second)
+  AndSpecification(Specification<Type>& first, Specification<Type>& second)
   : m_first{ first }
   , m_second{ second }
   {
   }
 
-  bool isSatisfied(T* item) override { return m_first.isSatisfied(item) && m_second.isSatisfied(item); }
+  bool isSatisfied(Type* item) override { return m_first.isSatisfied(item) && m_second.isSatisfied(item); }
 
 private:
-  Specification<T>& m_first;
-  Specification<T>& m_second;
+  Specification<Type>& m_first;
+  Specification<Type>& m_second;
 };
 
 }  // namespace OpenClosed
