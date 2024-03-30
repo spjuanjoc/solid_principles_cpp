@@ -1,6 +1,11 @@
-//
-// Created by juan.castellanos on 10/01/20.
-//
+/**
+ * @file PersistenceManager.h
+ *
+ * @brief Declaration of the manager for the file persistence for the Single Responsibility Principle.
+ *
+ * @author spjuanjoc
+ * @date   2020-01-10
+ */
 
 #ifndef PERSISTENCEMANAGER_H
 #define PERSISTENCEMANAGER_H
@@ -20,21 +25,22 @@ struct PersistenceManager
 
     for (const auto& entry : journal.getEntries())
     {
-      file_stream << entry << std::endl;
+      file_stream << entry << '\n';
     }
   }
 
-  static void read(const std::string& filename)
+  static std::vector<std::string> read(const std::string& filename)
   {
-    std::ifstream file_stream(filename);
-    std::string   line;
-    //    std::string word;
+    std::ifstream            file_stream(filename);
+    std::vector<std::string> file;
+    std::string              line;
 
     while (std::getline(file_stream, line))
     {
-      //      file_stream >> word;
-      std::cout << line << "\n";
+      file.emplace_back(line);
     }
+
+    return file;
   }
 };
 
