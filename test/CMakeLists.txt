@@ -19,5 +19,9 @@ set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${CMAKE_BINARY_DIR})
 find_package(fmt REQUIRED)
 find_package(GTest REQUIRED)
 
-target_link_libraries(${TEST_NAME} PRIVATE ${fmt_LIBRARIES} ${GTest_LIBRARIES} pthread)
+target_link_libraries(${TEST_NAME}
+  PRIVATE pthread
+  PRIVATE ${fmt_LIBRARIES}
+  PRIVATE ${GTest_LIBRARIES}
+)
 target_include_directories(${TEST_NAME} PRIVATE ../include)
