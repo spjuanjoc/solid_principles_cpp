@@ -1,8 +1,8 @@
-
-[ requires]
+[requires]
   gtest/1.10.0
   fmt/9.1.0
-[ generators]
+
+[generators]
   cmake_find_package
 
 # for conan 2.0
