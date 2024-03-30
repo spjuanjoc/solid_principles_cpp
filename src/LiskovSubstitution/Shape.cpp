@@ -1,7 +1,7 @@
 /**
- * @file .cpp
+ * @file Shape.cpp
  *
- * @brief Declaration of the  class.
+ * @brief Declaration of the Shape class.
  *
  * @author  spjuanjoc
  * @date    2020-01-10
@@ -9,34 +9,36 @@
 
 #include "LiskovSubstitution/Shape.h"
 
+#include <cassert>
+
 namespace LiskovSubstitution
 {
 
-int
-Shape::get_width() const
+std::uint32_t
+Shape::getWidth() const
 {
   return m_width;
 }
 
 void
-Shape::setWidth(const int& width)
+Shape::setWidth(const std::uint32_t& width)
 {
   this->m_width = width;
 }
 
-int
+std::uint32_t
 Shape::getHeight() const
 {
   return m_height;
 }
 
 void
-Shape::setHeight(const int& height)
+Shape::setHeight(const std::uint32_t& height)
 {
   this->m_height = height;
 }
 
-int
+std::uint32_t
 Shape::area() const
 {
   return m_width * m_height;
@@ -49,15 +51,20 @@ Shape::isSquare() const
 }
 
 Shape
-RectangleFactory::createRectangle(int width, int height)
+RectangleFactory::createRectangle(std::uint32_t width, std::uint32_t height)
 {
-  return Shape(width, height);
+  assert(width > 0);
+  assert(height > 0);
+
+  return { width, height };
 }
 
 Shape
-RectangleFactory::createSquare(int size)
+RectangleFactory::createSquare(std::uint32_t size)
 {
-  return Shape(size, size);
+  assert(size > 0);
+
+  return { size, size };
 }
 
 }  // namespace LiskovSubstitution
