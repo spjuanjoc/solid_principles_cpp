@@ -8,11 +8,10 @@
 */
 
 #include "DependencyInversion/CarReport/CarMaker.h"
+
 #include "DependencyInversion/CarReport/Engine.h"
 #include "DependencyInversion/CarReport/Logger/ConsoleLogger.h"
 #include "DependencyInversion/CarReport/Reporting/LogReporter.h"
-
-//#include <iostream>
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
