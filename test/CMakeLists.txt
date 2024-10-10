@@ -28,6 +28,6 @@ target_link_libraries(${TEST_NAME}
   PRIVATE ${GTest_LIBRARIES}
 )
 target_include_directories(${TEST_NAME}
-  PRIVATE ../include
   SYSTEM PRIVATE ${GTest_INCLUDES}
+  PRIVATE ../include
 )

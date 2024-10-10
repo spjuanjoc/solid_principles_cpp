@@ -50,8 +50,12 @@ set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${CMAKE_BINARY_DIR})
 find_package(fmt REQUIRED)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${fmt_LIBRARIES})
-target_include_directories(${PROJECT_NAME} PRIVATE include)
-
+target_include_directories(${PROJECT_NAME}
+  SYSTEM PRIVATE
+    ${fmt_INCLUDE_DIRS}
+  PUBLIC
+    include
+)
 
 ## Check custom options
 if(ENABLE_PCH) # Since CMake 3.15
