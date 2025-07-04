@@ -16,9 +16,6 @@ include(../cmake/CompilerOptions.cmake)
 set_compiler_options(${TEST_NAME})
 
 ## Find third-party packages
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_BINARY_DIR})
-set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${CMAKE_BINARY_DIR})
-
 find_package(fmt REQUIRED)
 find_package(GTest REQUIRED)
 

@@ -1,10 +1,9 @@
 [requires]
-  gtest/1.10.0
-  fmt/10.0.0
+  fmt/11.2.0
+  gtest/1.16.0
 
 [generators]
-  cmake_find_package
+  CMakeDeps
 
-# for conan 2.0
-# [generators]
-#   CMakeDeps
+[layout]
+  cmake_layout
