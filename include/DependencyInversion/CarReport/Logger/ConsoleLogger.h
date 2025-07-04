@@ -12,6 +12,7 @@
 
 #include "ILogger.h"
 
+#include <cstdint>
 #include <string>
 
 namespace DependencyInversion

@@ -9,6 +9,8 @@
 
 #include "SingleResponsibility/Journal.h"
 
+#include <cstdint>
+
 namespace SingleResponsibility
 {
 
