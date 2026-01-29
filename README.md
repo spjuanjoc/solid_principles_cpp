@@ -46,35 +46,25 @@ e.g. Report logger: Depend on interfaces.
 
 ---
 
-## To Build
+## Requirements
 
-Requires:
-
-- CMake > 3.15
-- Conan < 2.0
+- CMake > 3.24
 - A C++20 compliant compiler
+- Conan 2.x
+
+## Build
 
 ```shell
-mkdir build
-cd build
-cmake .. -DCMAKE_MODULE_PATH=$PWD -DCMAKE_BUILD_TYPE=Debug -DENABLE_TESTS=True -G Ninja
+mkdir build && cd build
+cmake .. -DENABLE_TESTS=True -DCMAKE_PROJECT_TOP_LEVEL_INCLUDES=/abs/path/to/cmake/conan_provider.cmake -DCMAKE_BUILD_TYPE=Debug
 cmake --build .
 ```
+
+## Test
 
 Run the tests from `./build`:
 
 ```shell
 cd build
 ctest -V
-```
-
-## Notes
-
-When using conan 2.0: [cmake-conan](https://github.com/conan-io/cmake-conan) is
-not yet compatible with conan 2.0, before loading the cmake project (to
-e.g. `./build`) run:
-
-```shell
-conan profile show
-conan install . --output-folder=build --build=missing
 ```
